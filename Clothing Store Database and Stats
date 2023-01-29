@@ -1,0 +1,34 @@
+--Create a winter clothing store database
+
+CREATE TABLE winter_clothes (id INTEGER PRIMARY KEY, item TEXT, size TEXT, color TEXT, price REAL);
+
+INSERT INTO winter_clothes VALUES (1,"cardigan","X","green",33.99);
+INSERT INTO winter_clothes VALUES (2,"cardigan","M","white",33.99);
+INSERT INTO winter_clothes VALUES (3,"cardigan","L","blue",33.99);
+INSERT INTO winter_clothes VALUES (4,"sweater","S","gray",24.99);
+INSERT INTO winter_clothes VALUES (5,"sweater","XL","black",24.99);
+INSERT INTO winter_clothes VALUES (6,"sweater","S","brown",24.99);
+INSERT INTO winter_clothes VALUES (7,"jacket","X","yellow",49.99);
+INSERT INTO winter_clothes VALUES (8,"jacket","XS","red",49.99);
+INSERT INTO winter_clothes VALUES (9,"jacket","XL","orange",49.99);
+INSERT INTO winter_clothes VALUES (10,"jacket","XL","purple",49.99);
+INSERT INTO winter_clothes VALUES (11,"jacket","M","black",49.99);
+INSERT INTO winter_clothes VALUES (12,"coat","XS","pink",37.99);
+INSERT INTO winter_clothes VALUES (13,"coat","M","white",37.99);
+INSERT INTO winter_clothes VALUES (14,"coat","M","green",37.99);
+INSERT INTO winter_clothes VALUES (15,"coat","M","brown",37.99);
+
+--Display database ordered by color
+SELECT * FROM winter_clothes
+ORDER BY color;
+
+--What is the expected income for each item?
+SELECT item,
+SUM(price) FROM winter_clothes
+GROUP BY item
+ORDER BY price asc;
+
+--How many items of each type and size of clothes are there?
+SELECT item, size,
+COUNT(size) FROM winter_clothes
+GROUP BY item, size;
