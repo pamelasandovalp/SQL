@@ -28,7 +28,7 @@ SUM(price) FROM winter_clothes
 GROUP BY item
 ORDER BY price asc;
 
---How many items of each type and size of clothes are there?
+--How many items of each type and size are there?
 SELECT item, size,
 COUNT(size) FROM winter_clothes
 GROUP BY item, size;
