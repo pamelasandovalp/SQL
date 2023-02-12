@@ -384,6 +384,8 @@ INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,A
 
 /*QUERIES AND STATS*/
 
+/**What are average, max, and min values in the data?**/
+
 -- What is the total space_walks_hours accomplished by man and woman after the year 2000?
 SELECT gender, 
 ROUND(SUM(space_walks_hr)) AS Total_space_walks_hours
@@ -407,6 +409,7 @@ FROM astronauts
 GROUP BY year
 HAVING number_of_astronauts > 20;
 
+/**What about those numbers per category in the data (using HAVING)?**/
 
 ---- Who were the astronauts that made more 2 days (24 hours) space walks and which current status they have?
 
@@ -422,3 +425,20 @@ SELECT name, military_rank, missions, space_flights, space_walks
 FROM astronauts
 GROUP BY military_rank
 HAVING space_flights > 1 AND space_walks >= 3;
+
+---- Which alma maters has acumulated more than 1 year of space flights hours and how many hours of space walks they had?
+
+SELECT alma_mater,
+ROUND (space_flight_hr/24) AS space_flights_days,
+space_walks_hr
+FROM astronauts
+GROUP BY alma_mater
+HAVING space_flights_days > 365;
+
+/**What ways are there to group the data values that don’t exist yet (using CASE)?**/
+
+
+
+
+
+
