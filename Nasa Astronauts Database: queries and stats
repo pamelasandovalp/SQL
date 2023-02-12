@@ -448,6 +448,17 @@ END AS "Type of astronaut traveler"
 FROM astronauts
 ORDER BY space_flight_hr;
 
+------ Group the name and number of missions made before 1975, between 1975 and 1991, and after 1992
+
+SELECT missions, space_flights,
+CASE
+    WHEN year > 1975 THEN "Before 1975"
+    WHEN year >= 1975 AND year < 1991 THEN "Between 1975 and 1991"
+    WHEN year >= 1991 THEN "After 1991"
+    ELSE "Not identified"
+END AS "Timeline"
+FROM astronauts
+ORDER BY space_flights asc;
 
 
 
