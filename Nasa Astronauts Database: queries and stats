@@ -437,7 +437,16 @@ HAVING space_flights_days > 365;
 
 /**What ways are there to group the data values that don’t exist yet (using CASE)?**/
 
+------ Create a new column that groups each astronaut´s space flights hours intro 3 categories: low traveler, average traveler, high traveler.
 
+SELECT name, space_flight_hr,
+CASE
+    WHEN space_flight_hr >= 0 AND space_flight_hr < 1500 THEN "Low traveler"
+    WHEN space_flight_hr >= 1500 AND space_flight_hr < 3000 THEN "Average traveler"
+    ELSE "High traveler"
+END AS "Type of astronaut traveler"  
+FROM astronauts
+ORDER BY space_flight_hr;
 
 
 
