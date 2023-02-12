@@ -384,9 +384,9 @@ INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,A
 
 /*QUERIES AND STATS*/
 
--- What is the average of space_walks_hours accomplished by man and woman after the year 2000?
+-- What is the total space_walks_hours accomplished by man and woman after the year 2000?
 SELECT gender, 
-AVG(space_walks_hr) 
+ROUND(SUM(space_walks_hr)) AS Total_space_walks_hours
 FROM astronauts
 WHERE year > 2000
 GROUP BY gender;
@@ -400,11 +400,13 @@ SELECT name,
 MIN(space_walks_hr)
 FROM astronauts;
 
--- How many  missions have been done per year?
+-- Which are the years when there were sent more than 20 astronauts on a mission?
 SELECT year, 
-COUNT(*) AS number_of_missions  
+COUNT(*) AS number_of_astronauts  
 FROM astronauts
-GROUP BY year;
+GROUP BY year
+HAVING number_of_astronauts > 20;
+
 
 ---- Who were the astronauts that made more 2 days (24 hours) space walks and which current status they have?
 
@@ -414,4 +416,9 @@ FROM astronauts
 GROUP BY name
 HAVING Estimated_space_walks_hr > 48;
 
+---- Who are the astronauts from each military rank that have made more than 1 space flight and 3 or more space walks?
 
+SELECT name, military_rank, missions, space_flights, space_walks
+FROM astronauts
+GROUP BY military_rank
+HAVING space_flights > 1 AND space_walks >= 3;
