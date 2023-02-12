@@ -382,7 +382,7 @@ INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,A
 INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,Alma_Mater,Undergraduate_Major,Graduate_Major,Military_Rank,Military_Branch,Space_Flights,Space_Flight_hr,Space_Walks,Space_Walks_hr,Missions,Death_Date,Death_Mission) VALUES ('John W. Young',1962,2,'Retired','9/24/1930','San Francisco, CA','Male','Georgia Institute of Technology','Aeronautical Engineering',NULL,'Captain','US Navy (Retired)',6,835,3,20,'Gemini 3, Gemini 10, Apollo 10, Apollo 16, STS-1 (Columbia), STS-9 (Columbia)',NULL,NULL);
 INSERT INTO astronauts(Name,Year,GroupNum,Status,Birth_Date,Birth_Place,Gender,Alma_Mater,Undergraduate_Major,Graduate_Major,Military_Rank,Military_Branch,Space_Flights,Space_Flight_hr,Space_Walks,Space_Walks_hr,Missions,Death_Date,Death_Mission) VALUES ('George D. Zamka',1998,17,'Retired','6/29/1962','Jersey City, NJ','Male','US Naval Academy; Florida Institute of Technology','Mathematics','Engineering Management','Colonel','US Marine Corps (Retired)',2,692,0,0,'STS-120 (Discovery), STS-130 (Endeavor)',NULL,NULL);
 
-/ * QUERIES AND STATS * /
+/*QUERIES AND STATS*/
 
 -- What is the average of space_walks_hours accomplished by man and woman after the year 2000?
 SELECT gender, 
@@ -405,5 +405,13 @@ SELECT year,
 COUNT(*) AS number_of_missions  
 FROM astronauts
 GROUP BY year;
+
+---- Who were the astronauts that made more 2 days (24 hours) space walks and which current status they have?
+
+SELECT name,status,
+ROUND (SUM(space_walks_hr)) AS Estimated_space_walks_hr
+FROM astronauts
+GROUP BY name
+HAVING Estimated_space_walks_hr > 48;
 
 
