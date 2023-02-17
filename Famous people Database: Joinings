@@ -15,7 +15,6 @@ INSERT INTO famous_people (name, age, industry) VALUES ("Cristiano Ronald",38,"s
 INSERT INTO famous_people (name, age, industry) VALUES ("Georgina Rodriguez",19,"influencer");
 INSERT INTO famous_people (name, age, industry) VALUES ("Chris Evans",41,"movies");
 
-
 CREATE TABLE general_info (
 id          INTEGER PRIMARY KEY AUTOINCREMENT,
 name_id     INTEGER,
@@ -24,13 +23,11 @@ networth    INTEGER);
 
 INSERT INTO general_info (name_id, birth_date, networth) VALUES (1, "03-07-1992", 50004569);
 INSERT INTO general_info (name_id, birth_date, networth) VALUES (2, "18-12-1963", 4009654);
-INSERT INTO general_info (name_id, birth_date, networth) VALUES (3, "09-07-1956", 8763459);
 INSERT INTO general_info (name_id, birth_date, networth) VALUES (4, "13-10-1967", 1289764);
-INSERT INTO general_info (name_id, birth_date, networth) VALUES (5, "25-11-1975", 6578932);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (5, "25-11-1975", "2346789");
 INSERT INTO general_info (name_id, birth_date, networth) VALUES (6, "09-02-1989", 1009834);
-INSERT INTO general_info (name_id, birth_date, networth) VALUES (7, "01-04-1985", 9750003);
 INSERT INTO general_info (name_id, birth_date, networth) VALUES (8, "31-12-1982", 30000098);
-INSERT INTO general_info (name_id, birth_date, networth) VALUES (9, "12-06-1978", 3456112);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (9, "12-06-1978", "7865435");
 INSERT INTO general_info (name_id, birth_date, networth) VALUES (10, "23-09-1982", 9000123);
 
 
@@ -44,5 +41,33 @@ INSERT INTO relationships (name_id1, name_id2, relation) VALUES (4,5, "married")
 INSERT INTO relationships (name_id1, name_id2, relation) VALUES (6,7, "married");
 INSERT INTO relationships (name_id1, name_id2, relation) VALUES (8,9, "married");
 INSERT INTO relationships (name_id1, name_id2, relation) VALUES (1,3, "best friends");
-INSERT INTO relationships (name_id1, name_id2, relation) VALUES (2,7, "enemies");
+INSERT INTO relationships (name_id1, name_id2, relation) VALUES (2,7, "business partners");
 INSERT INTO relationships (name_id1, name_id2, relation) VALUES (10,8, "unknown");
+
+/*JOININGS*/
+
+-- Display a table showing the name of famous people in the "movies industry", their birthdate and networth 
+
+SELECT name, birth_date, networth
+FROM famous_people
+LEFT JOIN general_info
+ON famous_people.id = general_info.name_id
+WHERE famous_people.industry = "movies"; 
+
+-- Display a table showing the total networth of the famous people LISTED in this database, and group it by industry
+
+SELECT industry, SUM (networth)
+FROM famous_people
+JOIN general_info
+ON famous_people.id = general_info.name_id
+GROUP BY industry;
+
+-- Display a table showing the relationships between each famous person
+
+SELECT a.name, b.name as partner, relation
+FROM relationships
+JOIN famous_people a
+ON a.id = relationships.name_id1
+JOIN famous_people b
+ON b.id = relationships.name_id2;
+
