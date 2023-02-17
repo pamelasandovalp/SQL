@@ -1,0 +1,48 @@
+CREATE TABLE famous_people (
+id          INTEGER PRIMARY KEY AUTOINCREMENT,
+name        TEXT, 
+age         INTEGER, 
+industry    TEXT);
+
+INSERT INTO famous_people (name, age, industry) VALUES ("Tom Cruise",60,"movies");
+INSERT INTO famous_people (name, age, industry) VALUES ("Brad Pitt",59,"movies");
+INSERT INTO famous_people (name, age, industry) VALUES ("Tom Hanks",66,"movies");
+INSERT INTO famous_people (name, age, industry) VALUES ("Ben Affleck",50,"movies");
+INSERT INTO famous_people (name, age, industry) VALUES ("Jennifer Lopez",53,"music");
+INSERT INTO famous_people (name, age, industry) VALUES ("Shakira",46,"singer");
+INSERT INTO famous_people (name, age, industry) VALUES ("Gerard Pique",36,"sports");
+INSERT INTO famous_people (name, age, industry) VALUES ("Cristiano Ronald",38,"sports");
+INSERT INTO famous_people (name, age, industry) VALUES ("Georgina Rodriguez",19,"influencer");
+INSERT INTO famous_people (name, age, industry) VALUES ("Chris Evans",41,"movies");
+
+
+CREATE TABLE general_info (
+id          INTEGER PRIMARY KEY AUTOINCREMENT,
+name_id     INTEGER,
+birth_date  TEXT,
+networth    INTEGER);
+
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (1, "03-07-1992", 50004569);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (2, "18-12-1963", 4009654);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (3, "09-07-1956", 8763459);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (4, "13-10-1967", 1289764);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (5, "25-11-1975", 6578932);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (6, "09-02-1989", 1009834);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (7, "01-04-1985", 9750003);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (8, "31-12-1982", 30000098);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (9, "12-06-1978", 3456112);
+INSERT INTO general_info (name_id, birth_date, networth) VALUES (10, "23-09-1982", 9000123);
+
+
+CREATE TABLE relationships (
+id          INTEGER PRIMARY KEY AUTOINCREMENT,
+name_id1    INTEGER,
+name_id2    INTEGER,
+relation    TEXT);
+
+INSERT INTO relationships (name_id1, name_id2, relation) VALUES (4,5, "married");
+INSERT INTO relationships (name_id1, name_id2, relation) VALUES (6,7, "married");
+INSERT INTO relationships (name_id1, name_id2, relation) VALUES (8,9, "married");
+INSERT INTO relationships (name_id1, name_id2, relation) VALUES (1,3, "best friends");
+INSERT INTO relationships (name_id1, name_id2, relation) VALUES (2,7, "enemies");
+INSERT INTO relationships (name_id1, name_id2, relation) VALUES (10,8, "unknown");
