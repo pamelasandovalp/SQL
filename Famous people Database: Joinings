@@ -1,3 +1,6 @@
+In this SQL code, I'm creating different famous people databases and I'm querying it to answer questions about it using joinings. 
+
+
 CREATE TABLE famous_people (
 id          INTEGER PRIMARY KEY AUTOINCREMENT,
 name        TEXT, 
