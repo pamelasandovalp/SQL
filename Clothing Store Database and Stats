@@ -1,4 +1,4 @@
---Create a winter clothing store database
+# In this SQL code, I'm querying a Clothing Store databse  to answer questions about it. 
 
 CREATE TABLE winter_clothes (id INTEGER PRIMARY KEY, item TEXT, size TEXT, color TEXT, price REAL);
 
