@@ -1,0 +1,84 @@
+--- For this project, I downloaded Spotify data from Kaggle.
+---Then I created a table to insert Spotify data into.
+--- Finally, I performed analytics on the data using SQL.
+
+
+-- Creating the table: 
+
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+song_key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+song_mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness decimal(8,7) NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL );
+
+--- Then I inserted the Spotify Data .csv into the table.
+--- Next, I explored the data using the following SQL. 
+
+-- 0 First I determined the avg popularity, danceability, and energy by artist and track. 
+
+SELECT artist_name,
+track_name,
+AVG(popularity),
+AVG(danceability),
+AVG(energy)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name, track_name
+ORDER BY popularity DESC;
+
+-- 2 Then I determined who the Top 5 artists are by popularity
+
+SELECT artist_name
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY popularity DESC
+LIMIT 5;
+
+--3 Next, I found ouy what is the average danceability by artist and track?
+
+SELECT artist_name,
+SUM(danceability)/COUNT(artist_name)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name;
+
+--4 Then I determined what artist released the longest song and how many minutes was it? 1ms = 0,000016666666666666667 min
+
+SELECT artist_name, duration_ms, duration_ms*0.000016666666666666667 as 'duration_min'
+FROM BIT_DB.Spotifydata
+ORDER BY duration_ms DESC
+LIMIT 1;
+
+--5 Then I determined what's the average of danceability for the 10 most popular songs?
+
+SELECT AVG(danceability/10)
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC
+LIMIT 10;
+
+-- 6 Then I determined what are the names of the artists that have more than 3 songs as the most popular songs ?
+
+SELECT artist_name,
+COUNT(artist_name) as 'No_songs'
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+HAVING COUNT(artist_name) > 3;
+
+--7 Then I determined what are the 5 less popular songs and what is their energy punctuation?
+
+SELECT track_name, popularity, energy
+FROM BIT_DB.Spotifydata
+ORDER BY popularity ASC
+LIMIT 5;
